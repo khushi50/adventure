@@ -371,13 +371,16 @@ body {
 
 .stories {
   padding: 10rem 0;
-  background-color: #777; }
+  position: relative;
+  overflow: hidden; }
   .stories .story {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.5);
     padding: 6rem;
     transform: skewX(-10deg);
     width: 75%;
     margin: 0 auto; }
+    .stories .story:not(:last-child) {
+      margin-bottom: 5rem; }
     .stories .story__shape {
       height: 15rem;
       width: 15rem;
@@ -386,10 +389,50 @@ body {
       shape-outside: circle(50% at 50% 50%);
       clip-path: circle(50% at 50% 50%);
       margin-right: .5rem;
-      transform: skewX(10deg); }
+      transform: skewX(10deg);
+      overflow: hidden;
+      position: relative; }
+      .stories .story__shape .story__caption {
+        font-size: 1.5rem;
+        text-align: center;
+        color: white;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 10%);
+        transition: all .2s; }
     .stories .story__shape__outline {
       transform: skewX(10deg); }
     .stories .story__pic {
-      height: 100%; }
+      height: 100%;
+      transform: translateX(-2rem);
+      transition: all .2s;
+      backface-visibility: hidden; }
     .stories .story p {
       margin-top: 1.2rem; }
+
+.story:hover .story__pic {
+  transform: scale(1.2);
+  filter: blur(3px) brightness(70%); }
+
+.story:hover .story__caption {
+  transform: translate(-50%, -50%);
+  opacity: 1; }
+
+.video__container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; }
+
+.story_bg_video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: .2; }
+
+.center-btn {
+  text-align: center; }

@@ -492,14 +492,19 @@ body{
 
 .stories{
     padding:10rem 0;
-    background-color: $gray;
+    position: relative;
+    overflow: hidden;
 
     .story{
-        background-color: white;
+        background-color:rgba(white,.5);
         padding:6rem;
         transform: skewX(-10deg);
         width: 75%;
         margin: 0 auto;
+        
+        &:not(:last-child){
+            margin-bottom: 5rem;
+        }             
 
         &__shape{
             height: 15rem;
@@ -510,6 +515,20 @@ body{
             clip-path: circle(50% at 50% 50%);
             margin-right: .5rem;
             transform: skewX(10deg);
+            overflow: hidden;
+            position: relative;
+
+            .story__caption{
+                font-size: 1.5rem;
+                text-align: center;
+                color: white;
+                opacity: 0;
+                position: absolute;
+                top:50%;
+                left: 50%;
+                transform: translate(-50%,10%);    
+                transition: all .2s;
+            }
         }
 
         &__shape__outline{
@@ -518,6 +537,9 @@ body{
 
         &__pic{
             height: 100%;
+            transform: translateX(-2rem);
+            transition: all .2s;
+            backface-visibility: hidden;
         }
 
         p{
@@ -525,5 +547,33 @@ body{
         }
 
     }
+}
+.story:hover .story__pic{
+    transform: scale(1.2);
+    filter: blur(3px) brightness(70%);
+} 
+
+.story:hover .story__caption{
+    transform:translate(-50%,-50%);
+    opacity: 1;
+}
+
+.video__container{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: -1;
+}
+
+.story_bg_video{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: .2;
+}
+.center-btn{
+    text-align: center;
 }
 
