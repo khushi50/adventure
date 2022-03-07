@@ -13,6 +13,19 @@
         <title>Natours | Exciting tours for adventurous people</title>
     </head>
     <body>
+        <div class="navigation">
+            <input type="checkbox" id="check-box" class="check-class">
+            <label for="check-box" class="navigation__button"><span class="icon"></span></label>
+            <div class="navigation__bg"></div>
+            <nav class="nav">
+                <ul class="nav__ul">
+                    <li class="nav__li"><a href="#"><span>01</span>Home</a></li>
+                    <li class="nav__li"><a href="#"><span>02</span>Product</a></li>
+                    <li class="nav__li"><a href="#"><span>03</span>About us</a></li>
+                    <li class="nav__li"><a href="#"><span>04</span>Contact us</a></li>
+                </ul>
+            </nav>
+        </div>
         <header class="header">
             <div class="header__logo-box">
                 <img class="header__logo" src="../starter/img/logo-white.png" alt="logo">
@@ -84,7 +97,7 @@
                 </div>
             </section>
 
-            <section class="rotate-sec">
+            <section class="rotate-sec" id="card-sec">
                 <div class="center-div">
                     <h2 class="heading-secondery">most popular tours</h2> 
                 </div>
@@ -111,7 +124,7 @@
                                 <div class="card__back--cta">
                                 <p class="only">Only</p>
                                 <p class="value">$450</p>
-                                <button class="btn-shop">book now</button>
+                                <button class="btn-shop btn btn--white"><a href="#popup">book now</a></button>
                             </div>
                             </div>
                         </div>
@@ -139,7 +152,7 @@
                                 <div class="card__back--cta">
                                 <p class="only">Only</p>
                                 <p class="value">$650</p>
-                                <button class="btn-shop">book now</button>
+                                <button class="btn-shop btn btn--white"><a href="#popup">book now</a></button>
                             </div>
                             </div>
                         </div>
@@ -167,7 +180,7 @@
                                 <div class="card__back--cta">
                                 <p class="only">Only</p>
                                 <p class="value">$850</p>
-                                <button class="btn-shop">book now</button>
+                                <button class="btn-shop btn btn--white"><a href="#popup">book now</a></button>
                             </div>
                             </div>
                         </div>
@@ -207,15 +220,85 @@
                     </div>
                     <div class="center-btn">
                         <a href="#" class="learn">Read All Stories --></a>
-                    </div>
-                    
+                    </div>                    
                 </div>
-                
+            </section>
 
+            <section class="form__section">
+                <div class="row">
+                    <div class="form__bg_container">
+                        <div class="form">
+                            <div class="center-div">
+                                <h4 class="heading-secondery">Start Booking Now</h4> 
+                            </div>
+                            <div class="input_field">
+                                <input type="text" id="fName" class="fName" placeholder="Full Name" required>
+                                <label for="fName" class="lfName">Full Name</label>
+                            </div>
+                            <div class="input_field">
+                                <input type="email" id="email" class="email" placeholder="Email" required>
+                                <label for="email" class="lemail">Email</label>
+                            </div>
+
+                            <div class="radio_container">
+                                <div class="radio">
+                                    <input type="radio" name="size" id="small" class="radio_element" checked>
+                                    <label for="small" class="lradio_element"><span class="art_radio"></span>Small tour group</label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="size" id="big" class="radio_element">
+                                    <label for="big" class="lradio_element"><span class="art_radio"></span>Big tour group</label>
+                                </div>
+                                <div class="submit">
+                                    <button class="btn-shop btn--green">Next step</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
         </main>
-        
-        
+
+        <div class="footer">
+            <div class="footer_logo_container">
+                <img src="img/logo-green-2x.png" alt="logo" class="footer__logo">
+            </div>
+            <div class="row">
+                <div class="col-1of2">
+                    <div class="footer_link_container">
+                        <ul class="footer_ul">
+                            <li class="footer_li"><a href="" class="footer_link">Home</a></li>
+                            <li class="footer_li"><a href="" class="footer_link">about us</a></li>
+                            <li class="footer_li"><a href="" class="footer_link">contact us</a></li>
+                            <li class="footer_li"><a href="" class="footer_link">career</a></li>
+                            <li class="footer_li"><a href="" class="footer_link">privcy policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-1of2">
+                    <div class="footer_pera_container">
+                        <p class="footer_pera">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos architecto praesentium temporibus quod ducimus repellat, dolorum expedita odit harum quisquam atque quasi laboriosam facilis facere, consectetur culpa error veritatis in.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="popup" id="popup">
+            <div class="popup__box">
+                <div class="popup__left">
+                    <img src="img/nat-8.jpg" alt="img">
+                    <img src="img/nat-9.jpg" alt="img1">
+                </div>
+                <div class="popup__right">
+                    <a href="#card-sec">X</a>
+                    <h2 class="heading-secondery">Book now!</h2>
+                    <h3>Important Info - Please read the t&c before you book.</h3>
+                    <p class="para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <button class="btn-shop btn btn--green">book now</button>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
