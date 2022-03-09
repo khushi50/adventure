@@ -2,6 +2,32 @@ $light-green: #7ed56f;
 $mediu-green: #55c57a;
 $dark-green: #28b485;
 $gray: #777;
+@mixin mediaQ($size){
+    @if $size==phone{
+        @media (max-width:37.5em){ //600px/16
+            @content
+        };
+    }
+
+    @if $size==tab-port{
+        @media (max-width:56.25em){ //900px/16
+            @content
+        };
+    }
+
+    @if $size==tab-lan{
+        @media (max-width:75em){ //1200px/16
+            @content
+        };
+    }
+
+    @if $size==desk{
+        @media (min-width:112.5em){ //1800/16
+            @content
+        };
+    }
+    
+}
 
 *,
 *::after,
@@ -11,7 +37,23 @@ $gray: #777;
     box-sizing: border-box;
 }
 html{
-    font-size: 62.5%;
+    font-size: 62.5%; //1rem = 10px = 62.5% 10px/16px*100=62.5%
+
+    @include mediaQ(tab-lan){
+        font-size: 65.25%; //1rem = 9px, 9/16*100=65.25%
+    }
+
+    @include mediaQ(tab-port){
+        font-size: 50%; //1rem = 8px, 8/16*100
+    }
+
+    @include mediaQ(phone){
+        font-size: 45%; 
+    }
+
+    @include mediaQ(desk){
+        font-size: 75%; //1rem = 12px, 12/16*100=75%
+    }
 }
 body{
     font-family: "lato", sans-serif;
@@ -34,7 +76,15 @@ body{
         z-index: 1000;   
         
         transition: all .5s cubic-bezier(.69,-0.37,.06,.9);
-        //transform: scale(100);    
+        //transform: scale(100); 
+        @include mediaQ(tab-port){
+            top:2.5rem;
+            right: 2.5rem;
+        }   
+        @include mediaQ(phone){
+            top:1.5rem;
+            right: 1.5rem;
+        } 
     }
     .check-class:checked ~ .navigation__bg{
         transform: scale(80);
@@ -49,7 +99,16 @@ body{
         position: fixed;
         top:4rem;
         right: 4rem;
-        z-index: 2000;        
+        z-index: 2000;     
+
+        @include mediaQ(tab-port){
+            top:2rem;
+            right: 2rem;
+        }   
+        @include mediaQ(phone){
+            top:1rem;
+            right: 1rem;
+        }   
     }
     .icon{
         width:3rem;
@@ -136,12 +195,21 @@ body{
 }
 
 .header{
-    height: 95vh;
+    height: 90vh;
     background-image: linear-gradient(to right bottom, rgba($mediu-green, 0.80), rgba($dark-green, 0.80)),url("../img/hero-small.jpg");
     background-position: top;
     background-size: cover;
     clip-path: polygon(0 0, 100% 0%, 100% 77%, 0% 100%);
     position:relative;
+
+    @include mediaQ(tab-port){
+        clip-path: polygon(0 0, 100% 0%, 100% 85%, 0% 100%);
+    }
+
+    @include mediaQ(phone){
+        height: 55vh;
+        clip-path: polygon(0 0, 100% 0%, 100% 90%, 0% 100%);
+    }
 }
 .header__logo-box{
     position:absolute;
@@ -171,6 +239,11 @@ body{
     animation-delay: 1s;/*after how many seconds you want the animation to start*/
     animation-timing-function: ease-out;
     /*animation-iteration-count: 2; how many times do you want this animation to run*/
+
+    @include mediaQ(phone){
+        font-size: 5rem; 
+        letter-spacing: 1rem;
+    }
 }
 .heading-primary--sub{
     display: block;
@@ -185,6 +258,11 @@ body{
     animation-duration: 1s;
     animation-delay: 1s;
     animation-timing-function: ease-out;
+
+    @include mediaQ(phone){
+        font-size: 1.5rem;
+        letter-spacing: .5rem;
+    }
 }
 @keyframes left-to-right{
     0%{
@@ -284,7 +362,10 @@ body{
 .row{
     max-width: 114rem;
     margin: 0 auto;
-    
+    @include mediaQ(tab-port){
+        max-width: 50rem;
+        padding: 0 3rem;
+    }
     &::after{
         content: "";
         display: table;
@@ -297,8 +378,15 @@ body{
         padding: 1rem;
         width: calc((100% - 5rem) / 2);
         
+        @include mediaQ(tab-port){
+            width: 100%;
+        }
         &:not(:last-child){
             margin-right: 5rem;
+            @include mediaQ(tab-port){
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
         }
     }
 
@@ -307,8 +395,15 @@ body{
         display: inline-block;
         float: left;
 
+        @include mediaQ(tab-port){
+            width: 100%;
+        }
         &:not(:last-child){
             margin-right: 5rem;
+            @include mediaQ(tab-port){
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
         }
     }
 
@@ -322,8 +417,15 @@ body{
         transition: all .2s;
         border-radius: 3px;
 
+        @include mediaQ(tab-port){
+            width: 100%;
+        }
         &:not(:last-child){
             margin-right: 5em;
+            @include mediaQ(tab-port){
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
         }
 
         &:hover{
@@ -369,7 +471,7 @@ body{
 
 .composition{
     position: relative;
-
+    
     &__photo{
         width: 50%;
         box-shadow: 0 1rem 3rem black;
@@ -377,15 +479,17 @@ body{
         outline-offset: 2rem;
         transition: all .3s;
         z-index: 10;
+        @include mediaQ(tab-port){
+            position: relative;
+            width: 33.33333%;
+            float: left;
 
+        }
         &:hover{
             z-index: 20;
             transform: scale(1.1) rotate(-5deg);
-            outline: 8px solid $dark-green;
-
-            
-        }
-        
+            outline: 8px solid $dark-green;            
+        }    
     
     }
 
@@ -393,6 +497,12 @@ body{
         top:1rem;
         left:2rem;
         transform: rotate(5deg);
+        @include mediaQ(tab-port){
+            transform: rotate(0deg);
+            top:0;
+            left: 0;
+        }
+        
 
     }
 
@@ -400,12 +510,22 @@ body{
         top:4rem;
         left:25rem;
         transform: rotate(-5deg);
+        @include mediaQ(tab-port){
+            transform: rotate(0deg);
+            top:0;
+            left: auto;
+        }
     }
 
     &__photo--p3{
         top:15rem;
         left:10rem;
         transform: rotate(5deg);
+        @include mediaQ(tab-port){
+            transform: rotate(0deg);
+            top:0;
+            left: auto;
+        }
     }
 
 
@@ -573,7 +693,49 @@ body{
             }
         }
     }
+    @include mediaQ(tab-port){
+        
+        height: auto;
+        border-radius: 3px;
+        background-color: white;
+        box-shadow: 0 1rem 2rem rgba(black, .5);
     
+
+    &__side{
+        height: auto;
+        position: relative;
+        box-shadow: none;
+
+    
+        &--back{
+            transform: rotateY(0);
+            clip-path: polygon(0% 15%, 100% 0, 100% 100%, 0 100%);
+            .card__back--cta{
+                position:relative;
+                top:0;
+                left: 0;
+                transform: translate(0);
+                color: white;
+                padding: 7rem 4rem 4rem 4rem;
+            }
+            .only{
+                font-size: 2rem;
+                margin: 1rem;
+            }
+            .value{
+                margin: 1rem 0 3rem 0;
+                font-size: 5.5rem;
+            }
+            
+            
+        }   
+    }
+    &:hover &__side--front{
+        transform: rotateY(0);
+    }
+    
+
+    }
 
 }
 .btn-shop{
@@ -607,7 +769,14 @@ body{
     letter-spacing: .2rem;
     transition: all .2s;
     margin-bottom: 5rem;
+    margin-top:5rem;
 
+    @include mediaQ(tab-port){
+        font-size: 3rem;
+    }
+    @include mediaQ(phone){
+        font-size: 2.5rem;
+    }
     &:hover{
         transform: skewY(2deg) skewX(15deg) scale(1.1);
     }
@@ -625,6 +794,14 @@ body{
         width: 75%;
         margin: 0 auto;
         
+        @include mediaQ(tab-port){
+            width: 100%;
+            padding: 3rem;
+        }
+        @include mediaQ(phone){
+            transform: skewX(0deg);
+            padding: 1rem;
+        }
         &:not(:last-child){
             margin-bottom: 5rem;
         }             
@@ -640,7 +817,10 @@ body{
             transform: skewX(10deg);
             overflow: hidden;
             position: relative;
-
+            margin-right: 2.5rem;
+            @include mediaQ(phone){
+                transform: skewX(0deg);
+            }
             .story__caption{
                 font-size: 1.5rem;
                 text-align: center;
@@ -656,6 +836,9 @@ body{
 
         &__shape__outline{
             transform: skewX(10deg);
+            @include mediaQ(phone){
+                transform: skewX(0deg);
+            }
         }
 
         &__pic{
@@ -667,6 +850,7 @@ body{
 
         p{
             margin-top: 1.2rem;
+            margin-bottom: 1.2rem;
         }
 
     }
@@ -705,22 +889,40 @@ body{
     background-color: $light-green;
     .row{
         width: 65%;
+        @include mediaQ(phone){
+            width: 100%;
+        }
     }
     .form__bg_container{
         width: 100%;
-        height: 45rem;
         background-image: linear-gradient(110deg, rgba(white,.9) 0%, rgba(white,.9) 50%, transparent 50%) ,url("../img/nat-10.jpg");
         background-size: cover;
         background-position: bottom;
         background-repeat: no-repeat;
-        
+
+        @include mediaQ(tab-lan){
+            background-image: linear-gradient(110deg, rgba(white,.9) 0%, rgba(white,.9) 70%, transparent 70%) ,url("../img/nat-10.jpg");
+        }
+        @include mediaQ(tab-port){
+            background-image: linear-gradient(110deg, rgba(white,.9) 0%, rgba(white,.9) 100%), url("../img/nat-10.jpg");
+        }
     }
     .form{
         padding: 2rem 5rem;
         width: 50%;
-
+        @include mediaQ(tab-lan){
+            padding:0 5rem 1.5rem;
+            width: 70%;
+        }
+        @include mediaQ(tab-port){
+            padding:0 5rem 5rem;
+            width: 100%;
+        }
         .heading-secondery{
             font-size: 2.5rem;
+            @include mediaQ(phone){
+                margin-bottom: 0;
+            }
         }
 
         .input_field{
@@ -735,6 +937,9 @@ body{
             border-radius: 2px;
             padding: 1rem 2rem;
             color:gray;
+            @include mediaQ(tab-port){
+                width: 100%;
+            }
         }
         .fName:focus{
             outline: none;
@@ -758,6 +963,9 @@ body{
             .radio{
                 display: inline-block;
                 margin:1rem 0 4rem 0;
+                @include mediaQ(phone){
+                    margin-bottom: .5rem;
+                }
                 &:not(:last-child){
                     margin-right: 2rem;
                 }
@@ -799,6 +1007,12 @@ body{
             opacity:1;
         }
     }
+    .btn-shop{
+        @include mediaQ(tab-port){
+            width: 100%;
+        }
+        
+    }
 }
 
 .footer{
@@ -808,6 +1022,10 @@ body{
     &_logo_container{
         text-align: center;
         margin-bottom: 6rem;
+
+        @include mediaQ(phone){
+            margin-bottom: 3rem;
+        }
 
         .footer__logo{
             width: 16rem;
@@ -838,7 +1056,7 @@ body{
         color:white;
         text-decoration: none;
         font-size: 1.3rem;
-        padding:  1rem;
+        padding:  .5rem;
         text-transform: uppercase;
         transition: all .2s;
         
@@ -853,6 +1071,10 @@ body{
         border-top: 1px solid $gray;
         width: 70%;
         float: right;
+
+        @include mediaQ(tab-port){
+            width: 100%;
+        }
     }
 }
 
@@ -919,3 +1141,4 @@ body{
         hyphens: auto;
     }
 }
+
